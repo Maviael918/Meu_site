@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Vídeos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#"><i class="fas fa-video"></i> Biblioteca de Vídeos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#estudos"><i class="fas fa-book"></i> Estudos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#trabalho"><i class="fas fa-briefcase"></i> Trabalho</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#entretenimento"><i class="fas fa-film"></i> Entretenimento</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contêiner principal -->
+    <div class="container mt-5 pt-5">
+        <h1 class="text-center">Biblioteca de Vídeos 📚</h1>
+        
+        <!-- Seção de Estudos -->
+        <div class="row" id="estudos">
+            <div class="col-12">
+                <h2>Estudos 📖</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <!-- Capa do vídeo que funciona como botão -->
+                            <div class="video-cover" data-video="/static/videos/estudo1.mp4" style="background-image: url('/static/images/estudo1.jpg');">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Descrição do Estudo 1</p>
+                                <a href="/static/videos/estudo1.mp4" download="estudo1.mp4" class="btn btn-primary"><i class="fas fa-download"></i> Baixar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <!-- Outra capa de vídeo -->
+                            <div class="video-cover" data-video="/static/videos/estudo2.mp4" style="background-image: url('/static/images/estudo2.jpg');">
+                                <div class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Descrição do Estudo 2</p>
+                                <a href="/static/videos/estudo2.mp4" download="estudo2.mp4" class="btn btn-primary"><i class="fas fa-download"></i> Baixar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Adicionar mais seções de vídeos aqui -->
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript para substituir a capa pelo vídeo quando clicado
+        document.querySelectorAll('.video-cover').forEach(cover => {
+            cover.addEventListener('click', function() {
+                const videoSrc = this.getAttribute('data-video');
+                const videoElement = document.createElement('video');
+                videoElement.setAttribute('controls', '');
+                videoElement.setAttribute('autoplay', '');
+                videoElement.innerHTML = `<source src="${videoSrc}" type="video/mp4">Seu navegador não suporta o elemento de vídeo.`;
+                this.innerHTML = '';
+                this.appendChild(videoElement);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <ul id="clientesList"></ul>
+
+    <script>
+        async function fetchClientes() {
+            try {
+                const response = await fetch('http://localhost:5000/clientes');
+                const clientes = await response.json();
+                const clientesList = document.getElementById('clientesList');
+
+                clientes.forEach(cliente => {
+                    const li = document.createElement('li');
+                    li.textContent = `Nome: ${cliente.nome}, Email: ${cliente.email}`;
+                    clientesList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Erro ao buscar clientes:", error);
+                alert("Erro ao buscar clientes.");
+            }
+        }
+
+        fetchClientes();
+    </script>
+</body>
+</html>
